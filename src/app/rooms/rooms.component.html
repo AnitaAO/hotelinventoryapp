@@ -1,0 +1,91 @@
+<!--line 2 - interpolation example-->
+<!--<h1>Welcome to {{hotelName}}</h1>-->
+<app-header></app-header>
+<!--<app-header></app-header>-->
+<!--<app-header></app-header>-->
+<!--line 5 - event binding example using div html attribute property 'hidden'-->
+<!--you can still use ngIf in place of this event binding, in fact use ngIf more to help free up the DOM-->
+<div [hidden]="showNoOfRooms">
+<!--<div *ngIf="showNoOfRooms">-->
+  <p>Number of Rooms:</p>
+  <!--  <p>{{numberOfRooms}}</p> - this can be used in place of line 7-->
+  <div
+    [ngStyle]="{color: rooms.availableRooms? 'red' : 'green'}"
+    [innerText]="numberOfRooms">
+    <!--  <div>{{numberOfRooms}}</div>-->
+    <!--  line 12 - property binding (using div html attribute property).-->
+    <!--  Note that for line 13, property binding can still work-->
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+<h1>{{getError$ | async}}</h1>
+<!--<h1>Number of rooms: {{roomsCount$ | async}}</h1>-->
+
+<button routerLink="add">Add room</button>
+<!--<button (click)="editRoom()">Edit room</button>-->
+<!--<button (click)="deleteRoom()">Edit room</button>-->
+
+<h1>{{totalBytes}} loaded!</h1>
+<!--{{ rooms?.availableRooms?? 'No rooms'}}-->
+
+<div *ngIf="selectedRow">
+  {{selectedRow | json}}
+</div>
+
+<div *ngIf="rooms.availableRooms > 0">
+<!--  this is for async pipe when a string object is used to get a service-->
+<!--<div *ngIf="rooms$ | async as roomItems ">-->
+<!--  <app-room-lists [Table]="roomItems | async"-->
+  <app-room-lists [Table]="roomItems"
+  [title]="title"
+  (selectedRow)="selectRow($event)"
+  >
+  </app-room-lists>
+<!--<app-room-lists (roomListsSelected)="roomListsSelect($event)"></app-room-lists>-->
+ <!--{{roomList | json}} - an example of jsonPipe-->
+</div>
+
+<button (click)="toggle()" type="button">Toggle</button>
+
+
+
+
+<!--display conditional/If statement, -->
+<!--{{ rooms?.availableRooms ?? 'No RoomsData'}}-->
+<!--chaining - if line 19 is not available, display line 20-->
+<!--<div *ngIf="rooms?.availableRooms">-->
+<!--  RoomsData List-->
+
+<!--Types of directives: 1. structural, 2. custom and built-in directives-->
+<!--Built-in directives include: ngIf, ngFor, switchCase, ngStyle,-->
+
+<!--PIPES-->
+<!-- -Pipes are used for data transformation-->
+<!-- -Pipes don't change actual object.-->
+<!--Types of pipes:-->
+<!--DatePipes: check angular.io e.g Nov-21-2022 | Date-->
+<!--UpperCasePipe e.g america | UpperCase-->
+<!--LowerCasePipe e.g America | LowerCase-->
+<!--CurrencyPipe e.g 500 | Currency : NGN-->
+<!--DecimalPipe {{rooms.rating  | number: 1-0-0}}-->
+<!--PercentagePipe 2 | percentage-->
+<!--JsonPipe {{roomList | json}}-->
+<!--SlicePipe let rooms of roomList | slice: 0:3-->
+<!--AsyncPipe-->
+
+<!--LifeCycle Hooks:-->
+<!-- -ngOnChange-->
+<!-- -ngOnInit: used mostly for services and APIs to display data.
+                This is the first lifeCycle event-->
+<!-- -ngDoCheck-->
+<!-- -ngAfterContentChecked-->
+<!-- -ngAfterViewInit-->
+<!-- -ngOnDestroy-->
+<!-- -ngAfterContentInit-->
+<!-- -ngAfterViewCheck-->
+
+<!--COMPONENTS COMMUNICATIONS-->
+<!-- -Using @Input and @OutPut-->
+<!-- -Using @ViewChild and @ContentChild-->
+<!-- -Using Services-->

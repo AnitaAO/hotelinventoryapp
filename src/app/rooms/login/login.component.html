@@ -1,0 +1,36 @@
+<!--{{loginForm.dirty | json }}-->
+<!--{{loginForm.pristine | json}}-->
+<form>
+  <div class="form-group">
+    <input
+      appHover="teal"
+      autocomplete="current-email"
+      required
+      class="form-control"
+      name="email"
+      type="email"
+      #emailControl=ngModel
+      [(ngModel)]="email"
+      placeholder="Please enter email"
+    />
+  </div>
+  <div>{{emailControl.errors | json}}</div>
+  <div class="form-group">
+    <input
+      appHover="green"
+      autocomplete="current-password"
+      required
+      minlength="8"
+      maxlength="20"
+      class="form-control"
+      name="password"
+      type="password"
+      [(ngModel)]="password"
+      placeholder="Please enter password"
+    />
+  </div>
+<!--  <div *ngIf="password.dirty && password.errors?.['minLength']"></div>-->
+  <div class="form-group">
+    <button class="btn btn-primary" (click)="Login()" type="submit">Login</button>
+  </div>
+</form>
